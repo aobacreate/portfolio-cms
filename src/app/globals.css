@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --color-text-primary: #111111;   /* ほぼ黒 */
-  --color-text-meta: #555555;      /* 少し薄い黒 */
-  --color-bg: #ffffff;       
-  --color-footer-bg: #EAEAEA;
+  --color-text-primary: #111111;
+  --color-text-meta: #666666;
+
+  --color-bg: #FAFAFA;
+  --color-footer-bg: #F0F0F0;
 }
 
 html {

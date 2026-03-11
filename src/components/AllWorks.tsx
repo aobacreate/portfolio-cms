@@ -39,7 +39,7 @@ export default function AllWorks({ works }: Props) {
         All Works
       </h1>
       <div className="flex justify-center py-6">
-        <div className="inline-flex rounded-full border border-neutral-200 bg-neutral-50 p-1">
+        <div className="inline-flex rounded-full border border-neutral-300 bg-neutral-50 p-1">
           {CATEGORIES.map((category) => {
             const isActive = category === selectedCategory
 
@@ -63,7 +63,7 @@ export default function AllWorks({ works }: Props) {
       <LayoutGroup>
         <motion.ul
           layout
-          className="relative flex flex-col border border-neutral-200 rounded-xl overflow-hidden"
+          className="relative flex flex-col border border-neutral-300 rounded-xl overflow-hidden"
         >
           <AnimatePresence mode="popLayout" initial={false}>
             {filteredWorks.map((work) => (
@@ -90,6 +90,7 @@ function WorkItem({
   isOpen: boolean
   toggleWork: (id: number) => void
 }) {
+
   return (
     <motion.li
       layout
@@ -100,19 +101,25 @@ function WorkItem({
         y: { duration: 0.18 },
       }}
       onClick={() => toggleWork(work.id)}
-      className={`cursor-pointer border-b border-neutral-200 last:border-none px-6 py-5
+      className={`cursor-pointer border-b border-neutral-300 last:border-none px-6
         ${isOpen ? "bg-neutral-50" : "hover:bg-neutral-50"}`}
     >
-      <div className="flex items-center justify-between">
-        <h2 className="text-base font-medium flex-1">{work.title}</h2>
+      <div
+        className={`py-5 transition-colors duration-200 ${
+          isOpen ? "-mx-6 px-6 bg-neutral-100" : ""
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          <h2 className="text-base font-medium flex-1">{work.title}</h2>
 
-        <div className="flex items-center gap-6">
-          <CategoryTag category={work.category} />
-          <ChevronDown
-            className={`h-5 w-5 transition-transform transition-colors duration-200 ${
-              isOpen ? "rotate-180 text-neutral-600" : "text-neutral-400"
-            }`}
-          />
+          <div className="flex items-center gap-6">
+            <CategoryTag category={work.category} />
+            <ChevronDown
+              className={`h-5 w-5 transition-transform transition-colors duration-200 ${
+                isOpen ? "rotate-180 text-neutral-600" : "text-neutral-400"
+              }`}
+            />
+          </div>
         </div>
       </div>
 
@@ -127,9 +134,9 @@ function WorkItem({
               height: { duration: 0.25 },
               opacity: { duration: 0.2 },
             }}
-            className="mt-2 overflow-hidden"
+            className="overflow-hidden"
           >
-            <div className="border-t border-neutral-300 pt-6">
+            <div className="pt-4 pb-5">
               <WorkDetailCard work={work} />
             </div>
           </motion.div>

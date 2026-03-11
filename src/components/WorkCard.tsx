@@ -2,10 +2,15 @@
 
 import { Work } from "@/generated/prisma/client";
 import WorkCardContent from "./WorkCardContent";
+import { motion } from "framer-motion"
 
 export default function WorkCard({ work }: { work: Work }) {
   return (
-    <div 
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
       onClick={() => {
         if (work.siteUrl) window.open(work.siteUrl, "_blank")
       }}
@@ -13,7 +18,7 @@ export default function WorkCard({ work }: { work: Work }) {
       border border-neutral-300 p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:bg-neutral-50"
     >
       <WorkCardContent work={work} />
-    </div>
+    </motion.div>
   )
 }
 

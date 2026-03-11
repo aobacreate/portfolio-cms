@@ -4,63 +4,131 @@ import { useState } from "react";
 import { Work } from "@/generated/prisma/client";
 import { ChevronDown } from "lucide-react"
 import WorkCardContent from "./WorkCardContent";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
+import CategoryTag from "./CategoryTag";
 
 type Props = {
   works: Work[]
-};
+}
 
-export default function AllWorks({works}: Props) {
-  
-  const [openId, setOpenId] = useState(-1);
+const CATEGORIES = ["All", "Next.js", "WordPress"] as const
+
+export default function AllWorks({ works }: Props) {
+  const [openId, setOpenId] = useState<number | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState("All")
+
+  type Category = typeof CATEGORIES[number]
+
+  const filteredWorks =
+    selectedCategory === "All"
+      ? works
+      : works.filter((work) => work.category === selectedCategory)
+
   const toggleWork = (id: number) => {
-    setOpenId(prev => prev === id ? -1 : id)
+    setOpenId((prev) => (prev === id ? null : id))
+  }
+
+  const handleCategoryChange = (category: Category) => {
+    setSelectedCategory(category)
+    setOpenId(null)
   }
 
   return (
     <section className="max-w-4xl mx-auto mt-16">
-      <h1 className="text-3xl font-bold tracking-tight mb-12 text-center">All Works</h1>
-      <ul className="flex flex-col gap-8">
-        {works.map((work) => (
-          <WorkItem
-            key={work.id}
-            work={work}
-            isOpen={openId === work.id}
-            toggleWork={toggleWork}
-          />          
-        ))}
-      </ul>
+      <h1 className="text-3xl font-bold tracking-tight mb-6 text-center">
+        All Works
+      </h1>
+      <div className="flex justify-center py-6">
+        <div className="inline-flex rounded-full border border-neutral-200 bg-neutral-50 p-1">
+          {CATEGORIES.map((category) => {
+            const isActive = category === selectedCategory
+
+            return (
+              <button
+                key={category}
+                onClick={() => handleCategoryChange(category)}
+                className={`rounded-full px-4 py-2 text-sm transition-all duration-200
+                  ${
+                    isActive
+                      ? "bg-white text-neutral-900 shadow-sm"
+                      : "text-neutral-500 hover:text-neutral-900"
+                  }`}
+              >
+                {category}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+      <LayoutGroup>
+        <motion.ul
+          layout
+          className="flex flex-col border border-neutral-200 rounded-xl overflow-hidden"
+        >
+          {filteredWorks.map((work) => (
+            <WorkItem
+              key={work.id}
+              work={work}
+              isOpen={openId === work.id}
+              toggleWork={toggleWork}
+            />
+          ))}
+        </motion.ul>
+      </LayoutGroup>
     </section>
   )
 }
 
-function WorkItem({work, isOpen, toggleWork}: {work: Work, isOpen: boolean, toggleWork: (id: number) => void}) {
+function WorkItem({
+  work,
+  isOpen,
+  toggleWork,
+}: {
+  work: Work
+  isOpen: boolean
+  toggleWork: (id: number) => void
+}) {
   return (
-    <div>
-    <li
+    <motion.li
+      layout
       onClick={() => toggleWork(work.id)}
-      className={`cursor-pointer rounded-xl border border-neutral-300 px-6 py-4
-                  ${isOpen ? "bg-neutral-50" : "hover:bg-neutral-100"} 
-      `}
+      transition={{ layout: { duration: 0.25 } }}
+      className={`cursor-pointer border-b border-neutral-200 last:border-none px-6 py-5
+        ${isOpen ? "bg-neutral-50" : "hover:bg-neutral-50"}`}
     >
       <div className="flex items-center justify-between">
-        <h2 className="text-base font-semibold">{work.title}</h2>
-        <div className="flex items-center gap-4">
-          <span className="text-neutral-500 text-xs">{work.category}</span>
-          <ChevronDown 
-            className={`w-5 h-5 text-neutral-400 transition-transform duration-200 
-              ${isOpen ? "rotate-180 text-neutral-600" : ""}`}
+        <h2 className="text-base font-medium flex-1">{work.title}</h2>
+
+        <div className="flex items-center gap-6">
+          <CategoryTag category={work.category} />
+          <ChevronDown
+            className={`h-5 w-5 transition-transform transition-colors duration-200 ${
+              isOpen ? "rotate-180 text-neutral-600" : "text-neutral-400"
+            }`}
           />
         </div>
       </div>
-      
-      {isOpen &&
-        <div className="border-t border-neutral-300 mt-2 p-6"> 
-          <WorkDetailCard work={work} />
-        </div>
-      }
-    </li>
 
-    </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{
+              height: { duration: 0.25 },
+              opacity: { duration: 0.2 },
+            }}
+            className="mt-2 overflow-hidden"
+          >
+            <div className="border-t border-neutral-300 pt-6">
+              <WorkDetailCard work={work} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.li>
   )
 }
 
@@ -71,3 +139,4 @@ function WorkDetailCard({ work }: { work: Work }) {
     </div>
   )
 }
+

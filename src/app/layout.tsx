@@ -17,8 +17,35 @@ const noto = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "えみ | プログラマー",
-  description: "Web制作を中心に取り組んでいるプログラマーのポートフォリオサイトです。",
+  metadataBase: new URL("https://emi-dev.com"),
+
+  title: {
+    default: "えみ | プログラマー",
+    template: "%s | えみ",
+  },
+
+  description: "プログラマーえみのポートフォリオサイトです。",
+
+  openGraph: {
+    title: "えみ | プログラマー",
+    description: "プログラマーえみのポートフォリオサイトです。",
+    url: "https://emi-dev.com",
+    siteName: "えみ | プログラマー",
+    images: [
+      {
+        url: "/ogp.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "ja_JP",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    images: ["/ogp.png"],
+  },
 };
 
 export default function RootLayout({

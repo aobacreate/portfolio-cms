@@ -13,7 +13,7 @@ datasource db {
 model Work {
   id          Int      @id @default(autoincrement())
   title       String
-  category    String?
+  category    String
   thumbnail   String?
   techStack   String?
   summary     String?

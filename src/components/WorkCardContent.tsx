@@ -2,15 +2,16 @@
 
 import Link from "next/link"
 import { Work } from "@/generated/prisma/client";
+import CategoryTag from "./CategoryTag";
 
 export default function WorkCardContent({ work, noTitle = false }: { work: Work; noTitle?: boolean }) {
   return (
     <>
       <div>
         {!noTitle && (
-          <div className="mb-4 flex items-center justify-between">
+          <div className="-mx-8 -mt-8 px-8 py-4 mb-4 bg-neutral-100 flex items-center justify-between">
             <h2 className="text-base font-semibold">{work.title}</h2>
-            <p className="text-xs text-neutral-500">{work.category}</p>
+            <CategoryTag category={work.category} />
           </div>
         )}
         <p className="text-base text-gray-600">{work.summary}</p>

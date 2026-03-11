@@ -63,16 +63,18 @@ export default function AllWorks({ works }: Props) {
       <LayoutGroup>
         <motion.ul
           layout
-          className="flex flex-col border border-neutral-200 rounded-xl overflow-hidden"
+          className="relative flex flex-col border border-neutral-200 rounded-xl overflow-hidden"
         >
-          {filteredWorks.map((work) => (
-            <WorkItem
-              key={work.id}
-              work={work}
-              isOpen={openId === work.id}
-              toggleWork={toggleWork}
-            />
-          ))}
+          <AnimatePresence mode="popLayout" initial={false}>
+            {filteredWorks.map((work) => (
+              <WorkItem
+                key={work.id}
+                work={work}
+                isOpen={openId === work.id}
+                toggleWork={toggleWork}
+              />
+            ))}
+          </AnimatePresence>
         </motion.ul>
       </LayoutGroup>
     </section>
@@ -91,8 +93,13 @@ function WorkItem({
   return (
     <motion.li
       layout
+      exit={{ opacity: 0, y: -8 }}
+      transition={{
+        layout: { duration: 0.25 },
+        opacity: { duration: 0.18 },
+        y: { duration: 0.18 },
+      }}
       onClick={() => toggleWork(work.id)}
-      transition={{ layout: { duration: 0.25 } }}
       className={`cursor-pointer border-b border-neutral-200 last:border-none px-6 py-5
         ${isOpen ? "bg-neutral-50" : "hover:bg-neutral-50"}`}
     >

@@ -101,7 +101,8 @@ function WorkItem({
         y: { duration: 0.18 },
       }}
       onClick={() => toggleWork(work.id)}
-      className={`cursor-pointer border-b border-neutral-300 last:border-none px-6
+      className={`cursor-pointer border-b border-neutral-300 last:border-none px-6 
+        transition-colors duration-200 active:bg-neutral-100
         ${isOpen ? "bg-neutral-50" : "hover:bg-neutral-50"}`}
     >
       <div

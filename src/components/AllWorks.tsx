@@ -34,12 +34,12 @@ export default function AllWorks({ works }: Props) {
   }
 
   return (
-    <section className="max-w-4xl mx-auto mt-16">
-      <h1 className="text-3xl font-bold tracking-tight mb-6 text-center">
-        All Works
+    <section className="max-w-4xl mx-auto w-full">
+      <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 md:mb-6 text-center">
+        Other Works
       </h1>
-      <div className="flex justify-center py-6">
-        <div className="inline-flex rounded-full border border-neutral-300 bg-neutral-50 p-1">
+      <div className="flex justify-center py-4 md:py-6">
+        <div className="inline-flex gap-1 rounded-full border border-neutral-300 bg-neutral-50 p-1">
           {CATEGORIES.map((category) => {
             const isActive = category === selectedCategory
 
@@ -51,7 +51,7 @@ export default function AllWorks({ works }: Props) {
                   ${
                     isActive
                       ? "bg-white text-neutral-900 shadow-sm"
-                      : "text-neutral-500 hover:text-neutral-900"
+                      : "text-neutral-500 hover:bg-white hover:text-neutral-900"
                   }`}
               >
                 {category}

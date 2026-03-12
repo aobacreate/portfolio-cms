@@ -11,10 +11,7 @@ export default function WorkCard({ work }: { work: Work }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
-      onClick={() => {
-        if (work.siteUrl) window.open(work.siteUrl, "_blank")
-      }}
-      className="min-h-[280px] cursor-pointer flex flex-col justify-between rounded-2xl overflow-hidden
+      className="h-full min-h-[280px] flex flex-col justify-between rounded-2xl overflow-hidden
       border border-neutral-300 p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:bg-neutral-50"
     >
       <WorkCardContent work={work} />

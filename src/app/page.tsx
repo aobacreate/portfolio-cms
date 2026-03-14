@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import FeaturedWorks from "@/components/FeaturedWorks";
 import AllWorks from "@/components/AllWorks";
 import Top from "@/components/Top";
+import Hero from "@/components/Background";
 
 export default async function Home() {
   
@@ -15,17 +16,18 @@ export default async function Home() {
   const other = works.filter((work) => !work.featured);
 
   return (
-      <>
-        <Background />
-        <main className="relative z-10 max-w-6xl mx-auto px-4 py-8 flex flex-col gap-12 md:gap-20">
-          <Top />
-          <FeaturedWorks featured={featured} />
-          <AllWorks works={other}/>
+    <>
+      <Hero />
+      <main className="relative z-10 max-w-6xl mx-auto px-4 py-8 flex flex-col gap-12 md:gap-20">
+        <Top />
+        <FeaturedWorks featured={featured} />
+        <AllWorks works={other}/>
       </main>
-      </>
-    );
+    </>
+  )
 }
 
+/*
 function Background() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#f7f7fb]">
@@ -45,3 +47,5 @@ function Background() {
     </div>
   )
 }
+*/
+

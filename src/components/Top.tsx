@@ -2,9 +2,11 @@
 
 import LinkButton from "@/components/LinkButton";
 
+
 export default function Top() {
   return (
-    <section className="max-w-lg mx-auto mt-8 md:mt-16">
+    <section className="flex items-center justify-center md:h-[50vh]">
+    <div className="max-w-xl mx-auto mt-8 md:mt-16 bg-white/70 backdrop-blur rounded-xl p-6 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
       <div className="flex flex-col gap-4 md:gap-6 text-center">
 
         <h1 className="text-3xl md:text-4xl font-semibold">
@@ -26,6 +28,7 @@ export default function Top() {
           <LinkButton kind={"note"} href="https://note.com/emi_create"/>
         </div>
       </div>
+    </div>
     </section>
   )
 }

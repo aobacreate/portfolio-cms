@@ -14,6 +14,8 @@ const emptyForm: WorkFormData = {
   siteUrl: "",
   githubUrl: "",
   detailUrl: "",
+  enUrl: "",
+  enSummary: "",
   featured: false,
   isPublished: true,
 };

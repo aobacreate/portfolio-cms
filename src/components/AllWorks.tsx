@@ -34,8 +34,11 @@ export default function AllWorks({ works }: Props) {
   }
 
   return (
-    <section className="max-w-4xl mx-auto w-full bg-white/70 backdrop-blur py-6 md:p-12 rounded-xl">
-      <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 md:mb-6 text-center">
+    <section
+      className="max-w-4xl mx-auto w-full bg-white/70 backdrop-blur py-6 md:p-12 rounded-xl">
+      <h1
+        className="text-2xl md:text-3xl font-bold tracking-tight mb-4 md:mb-6 text-center"
+      >
         Other Works
       </h1>
       <div className="flex justify-center py-4 md:py-6">

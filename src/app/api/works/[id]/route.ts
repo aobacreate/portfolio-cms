@@ -68,6 +68,8 @@ export async function PATCH(req: Request, { params }: Props) {
         siteUrl: body.siteUrl || null,
         githubUrl: body.githubUrl || null,
         detailUrl: body.detailUrl || null,
+        enUrl: body.enUrl || null,
+        enSummary: body.enSummary || null,
         featured: body.featured,
         isPublished: body.isPublished,
       },

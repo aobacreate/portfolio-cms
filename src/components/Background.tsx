@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <motion.div
       style={{ y: smoothY }} 
-      className="fixed top-0 left-0 w-full h-[120%] -z-10"
+      className="fixed top-0 left-0 w-full h-[120%] z-0"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, ease: "easeIn" }}

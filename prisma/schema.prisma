@@ -20,6 +20,8 @@ model Work {
   siteUrl     String?
   githubUrl   String?
   detailUrl   String?
+  enUrl       String?
+  enSummary   String?
   featured    Boolean  @default(false)
   isPublished Boolean  @default(true)
   createdAt   DateTime @default(now())

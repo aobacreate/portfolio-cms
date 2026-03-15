@@ -13,6 +13,8 @@ export type WorkFormData = {
   detailUrl: string;
   featured: boolean;
   isPublished: boolean;
+  enUrl: string;
+  enSummary: string;
 };
 
 type WorkFormProps = {
@@ -90,6 +92,17 @@ export default function WorkForm({
       </div>
 
       <div>
+        <label className="mb-1 block text-sm font-medium">English Summary</label>
+        <textarea
+          name="enSummary"
+          value={form.enSummary}
+          onChange={handleChange}
+          className="w-full rounded border px-3 py-2"
+          rows={4}
+        />
+      </div>
+
+      <div>
         <label className="mb-1 block text-sm font-medium">Tech Stack</label>
         <input
           name="techStack"
@@ -134,6 +147,16 @@ export default function WorkForm({
         <input
           name="detailUrl"
           value={form.detailUrl}
+          onChange={handleChange}
+          className="w-full rounded border px-3 py-2"
+        />
+      </div>
+
+      <div>
+        <label className="mb-1 block text-sm font-medium">English URL</label>
+        <input
+          name="enUrl"
+          value={form.enUrl}
           onChange={handleChange}
           className="w-full rounded border px-3 py-2"
         />

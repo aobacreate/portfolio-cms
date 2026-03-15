@@ -31,6 +31,8 @@ export default function EditWorkPage() {
           siteUrl: work.siteUrl ?? "",
           githubUrl: work.githubUrl ?? "",
           detailUrl: work.detailUrl ?? "",
+          enUrl: work.enUrl ?? "",
+          enSummary: work.enSummary ?? "",
           featured: work.featured ?? false,
           isPublished: work.isPublished ?? true,
         });

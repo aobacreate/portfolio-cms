@@ -23,11 +23,11 @@ export default function WorkCardContent({ work, noTitle = false }: { work: Work;
         {/* 英語 */}
         {work.enSummary &&
           work.enSummary
-            .split(".")
+            .split(/\.(?:\s|\n)+/)
             .filter(Boolean)
-            .map((line, i) => (
+            .map((line, i, arr) => (
               <p key={i} className={`text-sm text-gray-500 italic ${i === 0 ? "mt-2" : ""}`}>
-                {line}.
+                 {line}{i < arr.length - 1 ? "." : ""}
               </p>
             ))}
       </div>

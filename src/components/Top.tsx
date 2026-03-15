@@ -17,11 +17,11 @@ export default function Top() {
           Programmer
         </p>
 
-        <div className="flex flex-col gap-1 text-neutral-600 leading-relaxed">
+        <div className="flex flex-col gap-0 text-neutral-600 leading-relaxed">
           <p>制作したWebサイトやアプリを紹介しています。</p>
           <p>制作過程はnoteで公開しています。</p>
-          <p className="mt-4">Web applications I built.</p>
-          <p>Development notes on my blog.</p>
+          <p className="mt-4 italic text-neutral-500">Web applications I built.</p>
+          <p className="italic text-neutral-500">Development notes on my blog.</p>
         </div>
 
         <div className="grid grid-cols-2 md:flex md:justify-center gap-2 text-sm mt-4 md:mt-6">

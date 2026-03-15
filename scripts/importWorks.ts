@@ -5,7 +5,7 @@ import { prisma } from "../src/lib/prisma"
 
 type WorkCsvRow = {
   title: string
-  category?: string
+  category: string
   thumbnail?: string
   techStack?: string
   summary?: string
@@ -14,6 +14,8 @@ type WorkCsvRow = {
   detailUrl?: string
   featured?: string
   isPublished?: string
+  enUrl?: string
+  enSummary?: string
 }
 
 const csv = fs.readFileSync("data.csv", "utf-8")
@@ -50,7 +52,7 @@ async function main() {
     await prisma.work.create({
       data: {
         title,
-        category: toNullableString(r.category),
+        category: r.category?.trim() ?? "",
         thumbnail: toNullableString(r.thumbnail),
         techStack: toNullableString(r.techStack),
         summary: toNullableString(r.summary),
@@ -59,6 +61,8 @@ async function main() {
         detailUrl: toNullableString(r.detailUrl),
         featured: toBool(r.featured, false),
         isPublished: toBool(r.isPublished, true),
+        enUrl: toNullableString(r.enUrl),
+        enSummary: toNullableString(r.enSummary),
       },
     })
 

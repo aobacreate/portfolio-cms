@@ -29,6 +29,8 @@ async function main() {
     "siteUrl",
     "githubUrl",
     "detailUrl",
+    "enUrl",
+    "enSummary",
     "featured",
     "isPublished",
   ]
@@ -42,6 +44,8 @@ async function main() {
     work.siteUrl,
     work.githubUrl,
     work.detailUrl,
+    work.enUrl,
+    work.enSummary,
     String(work.featured),
     String(work.isPublished),
   ])

@@ -13,7 +13,7 @@ const baseStyle =
 
 const styles = {
   Demo: "bg-orange-500 text-white border-orange-500 hover:bg-orange-600",
-  GitHub: "border-neutral-300 hover:bg-neutral-100",
+  GitHub: "bg-black text-white border-black hover:bg-neutral-800",
   X: "border-neutral-300 hover:bg-neutral-100",
   note: "border-neutral-300 hover:bg-neutral-100",
   English: "border-neutral-300 hover:bg-neutral-100",
